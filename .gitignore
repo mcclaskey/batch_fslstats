@@ -1,0 +1,29 @@
+# ignore the data list and local param files
+*.csv
+
+#ignore deprecated and/or reference files
+not_in_use/
+archive/
+dev/
+
+#IDE files
+.venv/
+.idea/
+.*
+__pycache__/*
+*/__pycache__
+src/modules/__pycache__
+*.pyc
+*/*/*/*.pyc
+
+#mac files
+documentation/.*.docx
+/.*.xlsx
+*/Thumbs.db
+
+# temp files
+~$*
+/~$*
+
+
+
