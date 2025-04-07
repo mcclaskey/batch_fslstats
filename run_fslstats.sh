@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Define the CSV file name
-datalist_fullfile="dkifa_fslcalcs_datalist.csv"
+echo "Enter the full path, including the extension, of the input csv datalist"
+echo "(recall: must have input_file as column header), use tab for completion"
+echo "and do not use the ~ shortcut for home directory: "
+read -r -e -p "" datalist_fullfile
 
 # Check if the CSV file exists
 if [[ ! -f "$datalist_fullfile" ]]; then
