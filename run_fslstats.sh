@@ -12,6 +12,7 @@ if [[ ! -f "$datalist_fullfile" ]]; then
   exit 1
 fi
 
+echo "running FSLstats on file listed in datalist: $datalist_fullfile"
 col1="test"
 echo $col1
 
