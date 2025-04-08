@@ -13,11 +13,6 @@ if [[ ! -f "$datalist_fullfile" ]]; then
 fi
 
 echo "running FSLstats on file listed in datalist: $datalist_fullfile"
-col1="test"
-echo $col1
-
-col1='/mnt/z/Data_Processed/DKI/BIDS/derivatives/raw/sub-1221/ses-Plasticity/dwi_preprocessed/metrics/dki_kfa.nii'
-echo $col1
 
 # Read the CSV file line by line
 while IFS=, read -r col1 || [ -n "$col1" ]; do
