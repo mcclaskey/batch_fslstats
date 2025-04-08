@@ -18,16 +18,17 @@ echo ""
 echo ""
 
 # Read the CSV file line by line
-while IFS=, read -r col1 || [ -n "$col1" ]; do
+while IFS=, read -r input_file || [ -n "$input_file" ]; do
   # Skip empty lines
-  if [[ -z "$col1" ]]; then
+  if [[ -z "$input_file" ]]; then
     continue
   fi
+  
+  # remove carriage returns and trailing/leading whitespace
+  input_file="${input_file//$'\r'/}"
+  input_file=$(echo "$input_file" | xargs)
 
-  input_file="${col1//$'\r'/}"
 
-  # Trim any leading/trailing spaces
-  col1=$(echo "$col1" | xargs)
 
   # report to user
   echo "$input_file"
