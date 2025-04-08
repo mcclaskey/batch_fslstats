@@ -12,7 +12,10 @@ if [[ ! -f "$datalist_fullfile" ]]; then
   exit 1
 fi
 
-echo "running FSLstats on file listed in datalist: $datalist_fullfile"
+echo ""
+echo "running FSLstats -M command on files listed in datalist: $datalist_fullfile"
+echo ""
+echo ""
 
 # Read the CSV file line by line
 while IFS=, read -r col1 || [ -n "$col1" ]; do
