@@ -22,24 +22,19 @@ while IFS=, read -r col1 || [ -n "$col1" ]; do
   fi
 
   input_file="${col1//$'\r'/}"
-  echo $input_file
-  echo "Processing: '$input_file'"  # Debugging line
 
   # Trim any leading/trailing spaces
   col1=$(echo "$col1" | xargs)
 
-  # Process each row
+  # report to user
+  echo "$input_file"
   
-  echo "input_file: $input_file"
-
   # Replace .nii with _mean.txt in the file path
   output_file="${input_file/.nii/_mean.txt}"
-  echo "output_file: $output_file"
 
   # Construct and echo the FSL command
   fslcmd="fslstats ${input_file} -M > $output_file"
-  echo "FSL command: ${fslcmd}"
-
+  
   # Run the FSL command
   eval $fslcmd
 
