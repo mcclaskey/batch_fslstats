@@ -21,9 +21,9 @@
 
 # Define the CSV file name
 echo -e "\nRunning run_fslstats.sh\n"
-echo "Enter the full path, including the extension, of the input csv file"
-echo "(recall: it must have input_file as column header)"
-echo "Use tab for completion and do not use the ~ shortcut for home directory: "
+echo "Enter the full path, including the extension, of the input .csv"
+echo "file (recall: it must have input_file as 1 column header). Use tab" 
+echo -e "for completion and do not use the ~ shortcut for home directory:\n"
 read -r -e -p "" datalist_fullfile
 
 # Check if the CSV file exists
@@ -31,7 +31,7 @@ if [[ ! -f "$datalist_fullfile" ]]; then
   echo "datalist not found!"
   exit 1
 fi
-echo -e "\nrunning fslstats -M on files listed: $datalist_fullfile"
+echo -e "\nRunning fslstats -M on .nii files:"
 
 # Read the CSV file line by line
 while IFS=, read -r input_file || [ -n "$input_file" ]; do
@@ -61,4 +61,4 @@ while IFS=, read -r input_file || [ -n "$input_file" ]; do
 done < "$datalist_fullfile"
 
 echo -e "\nProgram complete. Output text files are saved with the same"
-echo -e "filename as the original .nii, but with the suffix '*_mean'\n"
+echo -e "filename as the original .nii, but with the suffix '*_mean'.\n"
