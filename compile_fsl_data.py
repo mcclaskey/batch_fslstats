@@ -19,6 +19,7 @@ CMcC 4.9.2025
 ##############################################################################
 
 import src.modules.utilities as utilities
+import src.modules.fsl as fsl
 import os
 import pandas as pd
 import datetime
@@ -39,20 +40,15 @@ print(f"[{timestamp_here}] compile_fsl_data.py.\n\nCompiling .csv file with "
       f"fslstats -M values of .nii files listed in:\n{datalist_filepath}")
 
 ##############################################################################
-# Loop through the rows in the csv, load context of each file into list
+# Loop through the rows in the csv, call fsl and add result to list
 ##############################################################################
 for ii, pprow in pd.read_csv(datalist_filepath).iterrows(): 
-    # lookup text file from csv
-    nii_file = pprow['input_file']
-    text_file = nii_file.replace('.nii','_mean.txt')
-
-    # read contents of the txt file (each txt file assumed to have only 1 row)
-    if os.path.exists(text_file):
-        with open(text_file, 'r', encoding='utf-8') as file:
-          content = file.read()
-          list_of_data.append({'filename': text_file, 'content': content})
-    else:
-        print(f"File not found: {text_file}")
+	nii_file = pprow['input_file']
+	if os.path.exists(nii_file):
+		meanvalue = fsl.fslstats_Mean(nii_file)
+		list_of_data.append({'filename': nii_file, 'content': meanvalue})
+	else:
+		print(f"File not found: {nii_file}")
     
 ##############################################################################
 # create dataframe, save to csv, end program
