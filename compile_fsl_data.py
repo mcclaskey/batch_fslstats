@@ -25,7 +25,7 @@ import pandas as pd
 import datetime
 
 ##############################################################################
-# start with basic info: ask user for csv, initialize variables, report
+# start with basic info: ask user for csv, report, check files
 ##############################################################################
 
 # create list of data
@@ -39,12 +39,16 @@ timestamp_here = datetime.datetime.now().strftime("%Y.%m.%d %H:%M:%S")
 print(f"[{timestamp_here}] compile_fsl_data.py.\n\nCompiling .csv file with "
       f"fslstats -M values of .nii files listed in:\n{datalist_filepath}")
 
+# read it and check for missing files
+datalist = pd.read_csv(datalist_filepath)
+valid_files = {f for f in datalist['input_file'] if os.path.exists(f)}
+
 ##############################################################################
 # Loop through the rows in the csv, call fsl and add result to list
 ##############################################################################
-for ii, pprow in pd.read_csv(datalist_filepath).iterrows(): 
+for ii, pprow in datalist.iterrows(): 
 	nii_file = pprow['input_file']
-	if os.path.exists(nii_file):
+	if nii_file in valid_files:
 		meanvalue = fsl.fslstats_Mean(nii_file)
 		list_of_data.append({'filename': nii_file, 'content': meanvalue})
 	else:
