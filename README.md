@@ -31,10 +31,14 @@ Wait while the files are created. When it is done you will have a .csv file in t
 Use these directions to set up the batch fslstats scripts on a new computer. This will step you through installing everything needed, so if you get to a part that isn’t necessary just skip it. 
 
 ## A. Setup requirements
-* A Unix or Linux operating system. This is setup specifically for a WSL2 on a windows but you could run all of this on a native mac/linux as well
+* A Unix or Linux operating system, or a PC with WSL2
 * The admin password to the computer
+* git 
 * Familiarity with terminal commands, basic understanding of bashrc in linux, and very basic competency with a shell text editor
   * On unix/linux the `~` symbol means “home directory”. So if you see `~/.bashrc`, then the full path to that file is `/Users/USERNAME/.bashrc` on a mac or `/home/USERNAME/` on a linux
+
+> [!TIP]
+> Follow [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install git if you need it. In this example I am using an ubuntu in WSL so i just typed `sudo apt install git-all` in the WSL2 Ubuntu terminal and entered my password when prompted.
 
 ## B. Setup recommmendations
 * WSL2 on windows running Ubuntu
