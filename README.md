@@ -80,6 +80,9 @@ If that doesn’t work, your computer may not have the python alias. Instead try
 python3
 ```
 
+> [!NOTE]
+> If you are missing the python alias, you may need to use `python3` anytime the current directions say `python`
+
 If nothing is found, download the latest stable python release from the main python downloads page [here](https://www.python.org/downloads/) and try again. 
 
 If a version of python is found, it will start in the terminal. Scan the lines to check the version. Ensure you have a version that is at least 3.11. If it’s a few years old, it’s probably a good idea to download a newer version just in case. 
