@@ -2,7 +2,7 @@
 Small set of functions to run fslstats on a WSL machine and compile output to a csv file
 
 # How to use the code
-Use these directions to run the batch_fslstats scripts to get mean values of .nii files. You must first have done the setup (see below).
+Use these directions to run the batch_fslstats scripts to get mean values of .nii files. You must first have done the setup (see [below](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-documentation/README.md#setup)).
 
 If it's been a while since you set up the scripts, it might be a good idea to pull any new changes from the repo using git.
 
