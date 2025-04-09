@@ -53,6 +53,9 @@ See Microsoft’s website for how to do this. As of the time of this writing, th
 > [!IMPORTANT]
 > If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files.
 
+> [!NOTE]
+> If you've set up a  new WSL2, it will not have git. Follow [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install git if you need it. In this example I am using an ubuntu in WSL so i just typed `sudo apt install git-all` in the WSL2 Ubuntu terminal and entered my password when prompted.
+
 ### 2. Install FSL
 Open a shell/command window/terminal and type the following command into it:
 ```
