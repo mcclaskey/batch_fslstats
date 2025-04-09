@@ -19,17 +19,14 @@ CMcC 4.9.2025
 ##############################################################################
 
 import src.modules.utilities as utilities
-import src.modules.fsl as fsl
 import os
 import pandas as pd
 import datetime
+import concurrent.futures
 
 ##############################################################################
 # start with basic info: ask user for csv, report, check files
 ##############################################################################
-
-# create list of data
-list_of_data  = []
 
 # ask for datalist (csv, first row must be "input_file")
 datalist_filepath = utilities.askfordatalist()
@@ -46,10 +43,15 @@ valid_files = {f for f in datalist['input_file'] if os.path.exists(f)}
 ##############################################################################
 # Loop through the rows in the csv, call fsl and add result to list
 ##############################################################################
-for ii, pprow in datalist.iterrows(): 
-	nii_file = pprow['input_file']
-	output_dict = utilities.compute_mean(nii_file,valid_files)
-	list_of_data.append(output_dict)
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    list_of_data = list(
+        filter(
+            None, 
+            executor.map(
+                lambda nii_file: utilities.compute_mean(nii_file, valid_files), 
+                datalist['input_file'])
+                )
+        )
     
 ##############################################################################
 # create dataframe, save to csv, end program
