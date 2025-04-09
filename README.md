@@ -50,6 +50,9 @@ Use these directions to set up the batch fslstats scripts on a new computer. Thi
 This can be done on a mac or linux, but I originally set this up for us to use on our PCs via WSL. 
 See Microsoft’s website for how to do this. As of the time of this writing, the website can be found [here](https://learn.microsoft.com/en-us/windows/wsl/install).
 
+> [!IMPORTANT]
+> If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files.
+
 ### 2. Install FSL
 Open a shell/command window/terminal and type the following command into it:
 ```
