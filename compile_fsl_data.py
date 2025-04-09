@@ -54,18 +54,8 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
         )
     
 ##############################################################################
-# create dataframe, save to csv, end program
+# create dataframe, show to user, save to csv, end program
 ##############################################################################
-
-# Create DataFrame from the list of dictionaries
 combined_df = pd.DataFrame(list_of_data)
-
-# Display the DataFrame
 print(combined_df)
-
-# save to file
-timestamp_file = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-output_dir = os.path.dirname(os.path.realpath(__file__))
-output_csv_fullfile = os.path.join(output_dir,f"{timestamp_file}_dkifa_fslcalcs_compiled.csv")
-combined_df.to_csv(output_csv_fullfile, index=False)
-print(f"\nProgram complete. Output saved to file:\n{output_csv_fullfile}\n")
+utilities.save_output_csv(combined_df,datalist_filepath)
