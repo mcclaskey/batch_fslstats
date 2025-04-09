@@ -7,7 +7,7 @@
 
 import subprocess
 
-def fslstats_Mean(input_file):
+def fslstats_Mean(input_file: str) -> float:
 
     """ Call FSL to run fslstats for Mean and return output
 

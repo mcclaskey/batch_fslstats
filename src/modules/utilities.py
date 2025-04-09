@@ -10,7 +10,7 @@ import tkinter as tk
 from tkinter import filedialog
 import src.modules.fsl as fsl
 
-def askfordatalist(*args):
+def askfordatalist(*args) -> str:
   """Asks user for data list file
 
   """
@@ -20,7 +20,7 @@ def askfordatalist(*args):
   return datalist_filepath
 
 
-def compute_mean(nii_file,valid_files):
+def compute_mean(nii_file: list[str],valid_files: list[str]) -> dict[str, float]:
     """Calls FSLstats for a single file, to be used with map
     
     This function calls FSLstats_mean for a single .nii file and
@@ -34,6 +34,3 @@ def compute_mean(nii_file,valid_files):
     else:
         print(f"File not found: {nii_file}")
         return None
-    
-
-#def to_output_csv()
