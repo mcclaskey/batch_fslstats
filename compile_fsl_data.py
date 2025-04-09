@@ -19,17 +19,14 @@ CMcC 4.9.2025
 ##############################################################################
 
 import src.modules.utilities as utilities
-import src.modules.fsl as fsl
 import os
 import pandas as pd
 import datetime
+import concurrent.futures
 
 ##############################################################################
-# start with basic info: ask user for csv, initialize variables, report
+# start with basic info: ask user for csv, report, check files
 ##############################################################################
-
-# create list of data
-list_of_data  = []
 
 # ask for datalist (csv, first row must be "input_file")
 datalist_filepath = utilities.askfordatalist()
@@ -39,16 +36,22 @@ timestamp_here = datetime.datetime.now().strftime("%Y.%m.%d %H:%M:%S")
 print(f"[{timestamp_here}] compile_fsl_data.py.\n\nCompiling .csv file with "
       f"fslstats -M values of .nii files listed in:\n{datalist_filepath}")
 
+# read it and check for missing files
+datalist = pd.read_csv(datalist_filepath)
+valid_files = {f for f in datalist['input_file'] if os.path.exists(f)}
+
 ##############################################################################
 # Loop through the rows in the csv, call fsl and add result to list
 ##############################################################################
-for ii, pprow in pd.read_csv(datalist_filepath).iterrows(): 
-	nii_file = pprow['input_file']
-	if os.path.exists(nii_file):
-		meanvalue = fsl.fslstats_Mean(nii_file)
-		list_of_data.append({'filename': nii_file, 'content': meanvalue})
-	else:
-		print(f"File not found: {nii_file}")
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    list_of_data = list(
+        filter(
+            None, 
+            executor.map(
+                lambda nii_file: utilities.compute_mean(nii_file, valid_files), 
+                datalist['input_file'])
+                )
+        )
     
 ##############################################################################
 # create dataframe, save to csv, end program
