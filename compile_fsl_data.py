@@ -48,11 +48,8 @@ valid_files = {f for f in datalist['input_file'] if os.path.exists(f)}
 ##############################################################################
 for ii, pprow in datalist.iterrows(): 
 	nii_file = pprow['input_file']
-	if nii_file in valid_files:
-		meanvalue = fsl.fslstats_Mean(nii_file)
-		list_of_data.append({'filename': nii_file, 'content': meanvalue})
-	else:
-		print(f"File not found: {nii_file}")
+	output_dict = utilities.compute_mean(nii_file,valid_files)
+	list_of_data.append(output_dict)
     
 ##############################################################################
 # create dataframe, save to csv, end program
