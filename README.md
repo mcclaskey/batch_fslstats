@@ -183,7 +183,7 @@ Next you need modify the `.bashrc` file to do 3 things:
 Detailed instructions for this step are currently explained [on this page](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file) but I will list the minimum necessary steps here. You will now need to open your `.bashrc` file in a text editor. 
 
 > [!TIP]
-> If you are on a WSL you can usually open the file in your Windows File Explorer by finding the “Linux” tab in the sidebar. 
+> If you are on a WSL you can usually open the file in your Windows File Explorer by finding the “Linux” tab in the sidebar. The official address of your wsl is likely \\wsl.localhost\. 
 
 Otherwise, open it directly in Linux by typing this in the command line if you use a bash shell:
 ```
@@ -244,7 +244,7 @@ setvirtualenvproject <path/to/batch_fslstats_env> $(pwd)
 ```
 As an example, my command looked like this when I did it:
 ```
-setvirtualenvproject ~/.virtualenvs/dkifa_fslcalcs_env $(pwd)
+setvirtualenvproject ~/.virtualenvs/batch_fslstats_env $(pwd)
 ```
 If it works you’ll see this:
 
