@@ -38,6 +38,9 @@ A file selection dialogue box will now open. Select the .csv file you created in
 
 When it is done you will have a .csv file in the same directory as the input .csv file. The output file's name will be be the same as the input filename but will have a timestamp and the suffix '*_compiled'.
 
+> [!NOTE]
+> If you are using a different way of managing your environments, skip the `workon batch_fslstats_env` line and instead activate your normal environment and cd to repo dir
+
 # Troubleshooting
 The following section lists some issues that I have come across that may be causing problems. WIP
 
