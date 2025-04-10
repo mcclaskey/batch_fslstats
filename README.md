@@ -2,11 +2,11 @@
 ### Get the mean value of a set of .nii files (using fslstats -M) and save the output to a .csv file
 batch_fslstats is a small set of functions that run fslstats on a Windows PC and compile output to a csv file. Use this package if you have a set of .nii files and you need the mean value of each. The scripts currently only run the fslstats command `fslstats -M`. [Read more about FSL here](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/).
 
-These functions work very quickly and require minimal coding knowledge, but some limited familiarity with unix to do the initial setup. Setup should be about 20 minutes maximum (assuming no problems), and once set up the scripts can process ~200 .nii files in 90 seconds. Your mileage may vary depending on your machine's resources.
+These functions work very quickly and require minimal coding knowledge, but some limited familiarity with unix to do the initial setup. Setup can be time-consuming if you need to do the entire thing (FSL can take a long time to install), but once set up the scripts can process ~200 .nii files in 90 seconds. Your mileage may vary depending on your machine's resources.
 
 
 > [!IMPORTANT]
-> FSL only works in a linux/unix environment. If you are on a PC then you need to install a WSL. For the purposes of these directions, any mentions of a "terminal window" or "command line" are referring to a unix terminal and not a PC terminal. In other words if you are on a PC running WSL2 or Docker, open the unix terminal and run commmands there.
+> FSL only works in a linux/unix environment. If you are on a PC then you need to install a WSL. For the purposes of these directions, any mention of a "terminal window" or "command line" is referring to a unix or linux terminal and not a PC terminal. In other words if you are on a PC running WSL2 or Docker, open the linux terminal and run commmands there.
 
 # Instructions
 If this is your first time working with the scripts, first run through the setup instructions [here](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-documentation/README.md#setup).
@@ -21,10 +21,10 @@ git pull
 First you need to put together a list of your .nii files. Save this list as a single-column .csv file where the first row says "input_file" and each subsequent row contains the full file path to a .nii file. Each .nii file will have its average value calculated.
 
 > [!IMPORTANT]
-> The first row of the .csv must have say "input_file" and all subsequent rows must be strings indicating the full file path to each .nii file
+> The first row of the .csv must say "input_file" and all subsequent rows must be strings indicating the full file path to each .nii file
 
 > [!Tip]
-> I usually create this .csv file in MATLAB using the `dir()` command and then save the result using `write_table()`. You can also do this in python or bash.
+> I usually create this .csv file in MATLAB with something like `T = struct2table(dir('wildcardsearchstring')))` where 'wildcardsearchstring' is a path that points to all my files. Then I edit the table in matlab's Variable Editor and save the result using `writetable(T,'datalist.csv')`. You can also do this in python or bash.
 
 ## 2. Run scripts 
 Open a terminal and run the following 2 lines:
@@ -33,9 +33,9 @@ workon batch_fslstats_env
 python compile_fsl_data.py
 ```
 
-A dialogue box will now open and you will now need to select the .csv file you created in step 1. Select the file and press ok.
+A file selection dialogue box will now open. Select the .csv file you created in step 1 and press ok.
 
-Wait while the files are created. When it is done you will have a .csv file in the same directory as the input file. The output file's name will be prepended with the date/time and appended with '*_compiled'.
+Wait while fslstats is called and the output is compiled. When it is done you will have a .csv file in the same directory as the input .csv file. The output file's name will be be the same as the input filename but will have a timestamp and the suffix '*_compiled'.
 
 
 
@@ -44,21 +44,28 @@ Wait while the files are created. When it is done you will have a .csv file in t
 This section will guide you through installing everything needed to run the scripts. 
 
 ## A. Setup requirements
-* A Unix or Linux operating system, or a PC with WSL
+* Linux or Mac, or a PC running either Windows 10 version 2004 and higher (Build 19041 and higher) or Windows 11
+* Ability to restart your machine if you are on a PC installing WSL for the first time
+* If your .nii data is stored on a network drive, you will need the full address to the network drive
 * The admin password to the linux/unix machine
   * If you are working on a WSL then you need the admin password to the WSL and not the PC (they may be different)
-* Basic familiarity with unix terminal commands such as `cd` and `mkdir`, basic understanding of bashrc in linux, and only very basic competency with a shell text editor
+* Basic familiarity with unix terminal commands such as `cd` and `mkdir`, basic understanding of bashrc in linux, and only very basic competency with a shell text editor if not on a PC
   * These instructions attempt to cover everything possible but some limited experience with unix can help you if you run into problems
-  * On unix/linux the `~` symbol means “home directory”. So if you see `~/.bashrc`, then the full path to that file is `/Users/USERNAME/.bashrc` on a mac or `/home/USERNAME/.bashrc` on a linux
+
+> [!TIP]
+> On unix/linux the `~` symbol means “home directory”. So if you see `~/.bashrc`, then the full path to that file is `/Users/USERNAME/.bashrc` on a mac or `/home/USERNAME/.bashrc` on a linux
 
 ## B. Setup recommmendations
-* WSL2 on windows running Ubuntu
+* WSL2 on windows running the default Ubuntu distribution
   
 ## C. Setup instructions
 
 ### 1. Install WSL2 if you are on a PC
 
-FSL requires a linux/unix machine. If you are on a PC you will need to set up a windows subsystem for linux (WSL) to do this. See Microsoft’s website for how to do this. As of the time of this writing, the website can be found [here](https://learn.microsoft.com/en-us/windows/wsl/install).
+FSL requires a linux/unix machine. If you are on a PC you will need to set up a windows subsystem for linux (WSL) to do this. Microsoft's website has very good instructions for how to do this. As of the time of this writing, the best instructions are found [here](https://learn.microsoft.com/en-us/windows/wsl/setup/environment). You can also see [the official WSL page here](https://learn.microsoft.com/en-us/windows/wsl/install) for more context. The default options work very well.
+
+> [!TIP]
+> When prompted to create a linux username and password, best practices are to use a short username with all lowercase letters and with *no spaces*. See [this link](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password) for further information.
 
 > [!IMPORTANT]
 > If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files.
