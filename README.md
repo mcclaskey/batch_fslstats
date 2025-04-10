@@ -1,6 +1,5 @@
 # batch_fslstats
-### Get the mean value of a set of .nii files (using fslstats -M) and save the output to a .csv file
-batch_fslstats is a small set of functions that call `fslstats -M` to get mean values for a set of .nii files and compile output to a csv file. Can be run on a Mac, Linux, or PC. 
+batch_fslstats is a small set of functions that use FSL to get mean values for a set of .nii files and compile output to a csv file. Can be run on a Mac, Linux, or PC. 
 
 Mean values are calculated using the FSL call `fslstats -M`. This means that the output values are the mean intensity value of the .nii file, excluding empty voxels. [Read more about FSL here](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/). 
 
@@ -11,8 +10,7 @@ These functions work very quickly and require minimal coding knowledge, but some
 > FSL only works in a linux/unix environment. If you have a PC then it will run inside a WSL. For the purposes of these directions, any mention of a "terminal window" or "command line" is referring to a unix or linux terminal and not a PC terminal. In other words if you are on a PC running WSL2 or Docker, open the linux terminal and run commmands there.
 
 # Instructions
-If this is your first time working with the scripts, first run through the setup instructions [here](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-documentation/README.md#setup).
-
+If this is your first time working with the scripts, first run through the setup instructions [here](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-documentation/README.md#setup). 
 If it's been a while since you set up the scripts, pull any new changes from the repo by running the following lines in your terminal:
 ```
 workon batch_fslstats_env
@@ -40,12 +38,21 @@ A file selection dialogue box will now open. Select the .csv file you created in
 
 When it is done you will have a .csv file in the same directory as the input .csv file. The output file's name will be be the same as the input filename but will have a timestamp and the suffix '*_compiled'.
 
-# TROUBLESHOOTING
+# Troubleshooting
 The following section lists some issues that I have come across that may be causing problems. WIP
 
 - If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files. A good check for this is to use the `ls` command to print contents of directories
 
-# HOW TO SETUP BATCH_FSLSTATS TO RUN ON A NEW COMPUTER:
+# Setup (Advanced Users)
+If you are an advanced user with git, python and FSL on your path and an established system for managing environments, setup is very standard: 
+1. activate an environment that has access to FSL and pandas or create a new one
+2. clone this repo with `git clone git@github.com:mcclaskey/batch_fslstats.git`
+3. cd to repo directory
+4. run `pip install -r requirements.txt` if you don't have pandas in your env
+
+Alternately, if you are an advanced user working on a machine that has FSL installed, you can start at setup step 4.
+
+# Setup (Full Instructions)
 
 ## A. Setup requirements
 * Linux or Mac, or a PC running either Windows 10 version 2004 and higher (Build 19041 and higher) or Windows 11
@@ -142,21 +149,7 @@ git version
 ```
 If nothing comes up then you need to install git. See the top of [this page](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to find the command that installs it.
 
-
-### 5. Clone this repository (repo) to your computer
-Open a terminal and change directories to where you will store the repo (or use `mkdir` to create a new folder). In this example I am using `~/repos/`. 
-Once you are in the folder where the repo will be stored, clone the repo by typing:
-```
-git clone git@github.com:mcclaskey/batch_fslstats.git
-```
-
-This has created a folder called `/batch_fslstats/` inside the current folder. 
-
-> [!TIP] 
-> You will need to know the path to this repository directory for subsequents steps, so make a note of it here.
-> As an example, because mine is stored in `~/repos/`, the path to my repository is  `~/repos/batch_fslstats/`.
-
-### 6. Install the virtualenvwrapper python package for path management
+### 5. Install the virtualenvwrapper python package for path management
 
 These steps are also found in [the install page for virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) but I will detail them here. If these steps fail, see that webpage for troubleshooting.
 
@@ -212,7 +205,19 @@ _CMcC’s notes for the lab:_
 * _The lines you added must always be at the bottom of the file, so that any modifications to the path will be known to virtualenvwrapper. If it ever breaks in the future, it may be that relevant path changes were inserted below those virtualenvwrapper lines (for example FSL)_
 * _If you find that you can’t edit the `~/.zshrc` or `~/.basrc` file to add those three lines, then you will need to manually run them each time a new shell is opened. The 1st and 3rd are the most important ones to run and the 2nd line can be skipped_
 
-### 7. Create the virtual environment (batch_fslstats_env)
+### 6. Clone this repository (repo) to your computer
+Open a terminal and change directories to where you will store the repo (or use `mkdir` to create a new folder). In this example I am using `~/repos/`. 
+Once you are in the folder where the repo will be stored, clone the repo with this command:
+```
+git clone git@github.com:mcclaskey/batch_fslstats.git
+```
+This has created a folder called `/batch_fslstats/` inside the current folder. 
+
+> [!TIP] 
+> You will need to know the path to this repository directory for subsequents steps, so make a note of it here.
+> As an example, because mine is stored in `~/repos/`, the path to my repository is  `~/repos/batch_fslstats/`.
+
+### 7. Create the virtual environment (batch_fslstats_env) and link it with the repo
 
 Open a new terminal window and type:
 ```
@@ -221,7 +226,6 @@ mkvirtualenv batch_fslstats_env
 This will create the environment and also activate it. It will print something like this:
 
 ![image](https://github.com/user-attachments/assets/c289d83f-6b36-49cf-9c95-2c457d83cf30)
-
 
 When the environment is activated you will see at the start of each line as in the above screenshot.
 
@@ -259,14 +263,11 @@ You should see `(batch_fslstats_env)` at the start of the line as before, like t
 ![image](https://github.com/user-attachments/assets/55630c8b-e58f-49e9-9843-d89aee172c72)
 
 
-
 Now print the current working directory using this command:
 ```
 pwd
 ```
 It should print the full path to the batch_fslstats directory. If these steps don’t work, then the virtualenv didn’t work correctly. See their webpage for troubleshooting.
-
-Close the terminal window.
 
 ### 7. Install python packages into the batch_fslstats_env:
 Open a fresh terminal window and run the following to activate the batch_fslstats_env and install the required packages:
