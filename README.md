@@ -46,7 +46,7 @@ The following section lists some issues that I have come across that may be caus
 # Setup (Advanced Users)
 If you are an advanced user with git, python and FSL on your path and an established system for managing environments (such as conda), setup is very standard: 
 1. activate an environment that has access to FSL and pandas or create a new one
-2. clone this repo with `git clone git@github.com:mcclaskey/batch_fslstats.git`
+2. cd to where you store repos and clone this repo with `git clone git@github.com:mcclaskey/batch_fslstats.git`
 3. cd to repo directory
 4. run `pip install -r requirements.txt` if you don't have pandas in your env
 
