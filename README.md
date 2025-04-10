@@ -1,22 +1,33 @@
 # batch_fslstats
-Small set of functions to run fslstats on a WSL machine and compile output to a csv file
+### Get the mean value of a set of .nii files (using fslstats -M) and save the output to a .csv file
+batch_fslstats is a small set of functions that run fslstats on a Windows PC and compile output to a csv file. Use this package if you have a set of .nii files and you need the mean value of each. The scripts currently only run the fslstats command `fslstats -M`. [Read more about FSL here](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/).
 
-# How to use the code
-Use these directions to run the batch_fslstats scripts to get mean values of .nii files. You must first have done the setup (see [below](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-documentation/README.md#setup)).
+These functions work very quickly and require minimal coding knowledge, but some limited familiarity with unix to do the initial setup. Setup should be about 20 minutes maximum (assuming no problems), and once set up the scripts can process ~200 .nii files in 90 seconds. Your mileage may vary depending on your machine's resources.
 
-If it's been a while since you set up the scripts, it might be a good idea to pull any new changes from the repo using git.
-
-# 1. Set up a list of files to run fslstats on
-First you need to put together a list of .nii files that you need to run FSL stats on. This must be a csv where the first row says "input_file" and each subsequent row contains the full file path to a .nii file. Each .nii file will have its average value calculated.
 
 > [!IMPORTANT]
-> The first row of the .csv must have the header "input_file" and all subsequent rows must be strings indicating the full file path to each .nii file
+> FSL only works in a linux/unix environment. If you are on a PC then you need to install a WSL. For the purposes of these directions, any mentions of a "terminal window" or "command line" are referring to a unix terminal and not a PC terminal. In other words if you are on a PC running WSL2 or Docker, open the unix terminal and run commmands there.
+
+# Instructions
+If this is your first time working with the scripts, first run through the setup instructions [here](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-documentation/README.md#setup).
+
+If it's been a while since you set up the scripts, pull any new changes from the repo by running the following lines in your WSL terminal:
+```
+workon batch_fslstats_env
+git pull
+```
+
+## 1. Set up a list of files to run fslstats on
+First you need to put together a list of your .nii files. Save this list as a single-column .csv file where the first row says "input_file" and each subsequent row contains the full file path to a .nii file. Each .nii file will have its average value calculated.
+
+> [!IMPORTANT]
+> The first row of the .csv must have say "input_file" and all subsequent rows must be strings indicating the full file path to each .nii file
 
 > [!Tip]
 > I usually create this .csv file in MATLAB using the `dir()` command and then save the result using `write_table()`. You can also do this in python or bash.
 
-# 2. Run scripts 
-Open a terminal window (or open the WSL2). Type the following 2 lines:
+## 2. Run scripts 
+Open a terminal and run the following 2 lines:
 ```
 workon batch_fslstats_env
 python compile_fsl_data.py
@@ -24,21 +35,21 @@ python compile_fsl_data.py
 
 A dialogue box will now open and you will now need to select the .csv file you created in step 1. Select the file and press ok.
 
-Wait while the files are created. When it is done you will have a .csv file in the same directory as the input file. The output file's name will be prepended with the date/time and appended with '*_compiled'
+Wait while the files are created. When it is done you will have a .csv file in the same directory as the input file. The output file's name will be prepended with the date/time and appended with '*_compiled'.
 
 
-# SETUP:
-Use these directions to set up the batch fslstats scripts on a new computer. This will step you through installing everything needed, so if you get to a part that isn’t necessary just skip it. 
+
+
+# How to set up batch_fslstats on a new computer:
+This section will guide you through installing everything needed to run the scripts. 
 
 ## A. Setup requirements
-* A Unix or Linux operating system, or a PC with WSL2
-* The admin password to the computer
-* git 
-* Familiarity with terminal commands, basic understanding of bashrc in linux, and very basic competency with a shell text editor
-  * On unix/linux the `~` symbol means “home directory”. So if you see `~/.bashrc`, then the full path to that file is `/Users/USERNAME/.bashrc` on a mac or `/home/USERNAME/` on a linux
-
-> [!TIP]
-> Follow [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install git if you need it. In this example I am using an ubuntu in WSL so i just typed `sudo apt install git-all` in the WSL2 Ubuntu terminal and entered my password when prompted.
+* A Unix or Linux operating system, or a PC with WSL
+* The admin password to the linux/unix machine
+  * If you are working on a WSL then you need the admin password to the WSL and not the PC (they may be different)
+* Basic familiarity with unix terminal commands such as `cd` and `mkdir`, basic understanding of bashrc in linux, and only very basic competency with a shell text editor
+  * These instructions attempt to cover everything possible but some limited experience with unix can help you if you run into problems
+  * On unix/linux the `~` symbol means “home directory”. So if you see `~/.bashrc`, then the full path to that file is `/Users/USERNAME/.bashrc` on a mac or `/home/USERNAME/.bashrc` on a linux
 
 ## B. Setup recommmendations
 * WSL2 on windows running Ubuntu
@@ -47,16 +58,16 @@ Use these directions to set up the batch fslstats scripts on a new computer. Thi
 
 ### 1. Install WSL2 if you are on a PC
 
-This can be done on a mac or linux, but I originally set this up for us to use on our PCs via WSL. 
-See Microsoft’s website for how to do this. As of the time of this writing, the website can be found [here](https://learn.microsoft.com/en-us/windows/wsl/install).
+FSL requires a linux/unix machine. If you are on a PC you will need to set up a windows subsystem for linux (WSL) to do this. See Microsoft’s website for how to do this. As of the time of this writing, the website can be found [here](https://learn.microsoft.com/en-us/windows/wsl/install).
 
 > [!IMPORTANT]
 > If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files.
 
-> [!NOTE]
-> If you've set up a  new WSL2, it will not have git. Follow [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install git if you need it. In this example I am using an ubuntu in WSL so i just typed `sudo apt install git-all` in the WSL2 Ubuntu terminal and entered my password when prompted.
-
 ### 2. Install FSL
+
+> [!NOTE]
+> I know from my colleagues here at MUSC that FSL also works inside [PyDesigner via NeuroDock](https://pydesigner.readthedocs.io/en/latest/index.html), which uses Docker Desktop. However, one of the first steps in installing Docker Desktop and PyDesigner is installing WSL2, so I just skipped the extra Docker steps. But if you have FSL already installed on some unix/linux machine, then feel free to use that instead.
+
 Open a shell/command window/terminal and type the following command into it:
 ```
 fsl
@@ -67,7 +78,6 @@ If you see the following GUI pop up, you have FSL on the machine and can skip su
 ![image](https://github.com/user-attachments/assets/633d0aa3-9f9c-436b-8757-749fa10de778)
 
 Otherwise, go to the FSL installation page (currently [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation)) and follow the instructions for your operating system and try `fsl` again. For troubleshooting, see the FSL website.
-
 
 ### 3. Install Python
 
@@ -92,8 +102,15 @@ If a version of python is found, it will start in the terminal. Scan the lines t
 
 To quit python, type `quit()`.
 
+### 4. Install git
+Open a shell/command window/terminal, hereafter called terminal, and type
+```
+git version
+```
+If nothing comes up then you do not have git installed. Follow [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to find the command that installs it.
 
-### 4. Clone this repo to your computer
+
+### 5. Clone this repo to your computer
 Open a terminal and change directories to where you will store the repo (or use `mkdir` to create a new folder). In this example I am using `~/repos/`. 
 Once you are in the folder where the repo will be stored, clone the repo by typing:
 ```
@@ -106,7 +123,7 @@ This has created a folder called `/batch_fslstats/` inside the current folder.
 > You will need to know the path to this repository directory for subsequents steps, so make a note of it here.
 > As an example, because mine is stored in `~/repos/`, the path to my repository is  `~/repos/batch_fslstats/`.
 
-### 5. Install the virtualenvwrapper python package for path management
+### 6. Install the virtualenvwrapper python package for path management
 
 These steps are also found in [the install page for virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) but I will detail them here. If these steps fail, see that webpage for troubleshooting.
 
@@ -163,7 +180,7 @@ CMcC’s notes for the lab:
 * The lines you added must always be at the bottom of the file, so that any modifications to the path will be known to virtualenvwrapper. If it ever breaks in the future, it may be that relevant path changes were inserted below those virtualenvwrapper lines (for example FSL)
 * If you find that you can’t edit the `~/.zshrc` or `~/.basrc` file to add those three lines, then you will need to manually run them each time a new shell is opened. The 1st and 3rd are the most important ones to run and the 2nd line can be skipped
 
-### 6. Create the virtual environment (batch_fslstats_env)
+### 7. Create the virtual environment (batch_fslstats_env)
 
 Open a new terminal window and type:
 ```
