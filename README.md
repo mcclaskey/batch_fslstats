@@ -27,30 +27,36 @@ First you need to put together a list of your .nii files. Save this list as a si
 > I usually create this .csv file in MATLAB with something like `T = struct2table(dir('wildcardsearchstring')))` where 'wildcardsearchstring' is a path that points to all my files. Then I edit the table in matlab's Variable Editor and save the result using `writetable(T,'datalist.csv')`. You can also do this in python or bash.
 
 ## 2. Run scripts 
+
+> [!IMPORTANT]
+> If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files.
+
 Open a terminal and run the following 2 lines:
 ```
 workon batch_fslstats_env
 python compile_fsl_data.py
 ```
 
-A file selection dialogue box will now open. Select the .csv file you created in step 1 and press ok.
+A file selection dialogue box will now open. Select the .csv file you created in step 1 and press ok. Wait while the program runs.
 
-Wait while fslstats is called and the output is compiled. When it is done you will have a .csv file in the same directory as the input .csv file. The output file's name will be be the same as the input filename but will have a timestamp and the suffix '*_compiled'.
+When it is done you will have a .csv file in the same directory as the input .csv file. The output file's name will be be the same as the input filename but will have a timestamp and the suffix '*_compiled'.
 
 
 
 
 # How to set up batch_fslstats on a new computer:
-This section will guide you through installing everything needed to run the scripts. 
 
 ## A. Setup requirements
 * Linux or Mac, or a PC running either Windows 10 version 2004 and higher (Build 19041 and higher) or Windows 11
 * Ability to restart your machine if you are on a PC installing WSL for the first time
 * If your .nii data is stored on a network drive, you will need the full address to the network drive
 * The admin password to the linux/unix machine
-  * If you are working on a WSL then you need the admin password to the WSL and not the PC (they may be different)
+  * If you are working on a previously created WSL then you need the admin password to the WSL and not the PC (they may be different)
 * Basic familiarity with unix terminal commands such as `cd` and `mkdir`, basic understanding of bashrc in linux, and only very basic competency with a shell text editor if not on a PC
   * These instructions attempt to cover everything possible but some limited experience with unix can help you if you run into problems
+
+> [!NOTE]
+> By convention, unix and linux specify file paths using `/` and Windows OS uses `\`. For the purposes of this readme, I use `/` for paths on the linux/unix machine and `\` to indicate a filepath accessed via the PC
 
 > [!TIP]
 > On unix/linux the `~` symbol means “home directory”. So if you see `~/.bashrc`, then the full path to that file is `/Users/USERNAME/.bashrc` on a mac or `/home/USERNAME/.bashrc` on a linux
@@ -62,13 +68,33 @@ This section will guide you through installing everything needed to run the scri
 
 ### 1. Install WSL2 if you are on a PC
 
-FSL requires a linux/unix machine. If you are on a PC you will need to set up a windows subsystem for linux (WSL) to do this. Microsoft's website has very good instructions for how to do this. As of the time of this writing, the best instructions are found [here](https://learn.microsoft.com/en-us/windows/wsl/setup/environment). You can also see [the official WSL page here](https://learn.microsoft.com/en-us/windows/wsl/install) for more context. The default options work very well.
+Follow Microsoft's instructions to set up a WSL. As of the time of this writing, the best instructions are found [here](https://learn.microsoft.com/en-us/windows/wsl/setup/environment). You can also see [the official WSL page here](https://learn.microsoft.com/en-us/windows/wsl/install) for more context. Use the default installation options.
+
+> [!CAUTION]
+> When creating a linux username and password, best practices are to use a short username with all lowercase letters and with *no spaces*. A space may cause problems later. See [this link](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password) for further information.
 
 > [!TIP]
-> When prompted to create a linux username and password, best practices are to use a short username with all lowercase letters and with *no spaces*. See [this link](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password) for further information.
+> Don't forget to restart your computer after installing the linux distro.
 
-> [!IMPORTANT]
-> If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files.
+Next mount your PC's data drives to your WSL so you can access your neuroimaging files. Run the following command in the WSL terminal:
+
+```
+sudo mount -t drvfs C: /mnt/c/
+```
+> [!TIP]
+> Right click in the WSL terminal to paste text. The `ctrl-v` shortcut won't work.
+
+When prompted, enter the password to your WSL distro and press enter. Repeat for other Z: or D: drives as needed to access your data. 
+
+> [!NOTE]
+> If you have data on a network drive, first mount the network drive to the PC and assign it a letter, then mount the drive to the WSL by the letter.
+
+If you want to set up your WSL so that these drives automatically attach upon starting the WSL, you need to add these `mount` commands to your `.bashrc` file. To do this, open File Explorer in your PC and find the wsl machine. I usually find it through the File Explorer's sidebar. Then navigate to your WSL home directory and locate the .bashrc file. As an example, the address to my WSL .bashrc is `\\wsl.localhost\Ubuntu\home\mcclaskey\.bashrc`. Open the `.bashrc` file in notepad, scroll to the bottom, add the mount commands, then save and close the file.  
+
+>[!TIP]
+> If you don't see the .bashrc file, it may be hidden. Check that your file explorer is set to show hidden files. Alternately, you can edit this .bashrc file inside your WSL using a shell text editor, but this is very tricky to do.
+
+Close and reopen your WSL terminal. If this worked you should be prompted for your admin password. Enter it and press enter.
 
 ### 2. Install FSL
 
@@ -110,7 +136,7 @@ If a version of python is found, it will start in the terminal. Scan the lines t
 To quit python, type `quit()`.
 
 ### 4. Install git
-Open a shell/command window/terminal, hereafter called terminal, and type
+Git also often comes natively installed on most WSL linux distros. In your terminal window, run the following command to check for git:
 ```
 git version
 ```
