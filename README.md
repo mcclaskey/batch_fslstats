@@ -1,12 +1,12 @@
 # batch_fslstats
 ### Get the mean value of a set of .nii files (using fslstats -M) and save the output to a .csv file
-batch_fslstats is a small set of functions that run fslstats and compile output to a csv file. Use this package if you have a set of .nii files and you need the mean value of each. The scripts currently only run the fslstats command `fslstats -M`. [Read more about FSL here](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/). These directions are optimized for a PC.
+batch_fslstats is a small set of functions that use fslstats to get mean values for a set of .nii files and compile output to a csv file. Can be run on a Mac, Linux, or PC. The scripts currently only run the fslstats command `fslstats -M`. [Read more about FSL here](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/). 
 
-These functions work very quickly and require minimal coding knowledge, but some limited familiarity with unix to do the initial setup. Setup can be time-consuming if you need to do the entire thing (FSL can take a long time to install), but once set up the scripts can process ~200 .nii files in 90 seconds. Your mileage may vary depending on your machine's resources.
+These functions work very quickly and require minimal coding knowledge, but some limited familiarity with unix to do the initial setup. Setup can be time-consuming if you need to do the entire thing (FSL can take a long time to install), but once installed, the scripts can process ~200 .nii files in 90 seconds. Your mileage may vary depending on your machine's resources.
 
 
 > [!IMPORTANT]
-> FSL only works in a linux/unix environment. If you are on a PC then you need to install a WSL. For the purposes of these directions, any mention of a "terminal window" or "command line" is referring to a unix or linux terminal and not a PC terminal. In other words if you are on a PC running WSL2 or Docker, open the linux terminal and run commmands there.
+> FSL only works in a linux/unix environment. If you have a PC then it will run inside a WSL. For the purposes of these directions, any mention of a "terminal window" or "command line" is referring to a unix or linux terminal and not a PC terminal. In other words if you are on a PC running WSL2 or Docker, open the linux terminal and run commmands there.
 
 # Instructions
 If this is your first time working with the scripts, first run through the setup instructions [here](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-documentation/README.md#setup).
@@ -49,14 +49,13 @@ When it is done you will have a .csv file in the same directory as the input .cs
 ## A. Setup requirements
 * Linux or Mac, or a PC running either Windows 10 version 2004 and higher (Build 19041 and higher) or Windows 11
 * Ability to restart your machine if you are on a PC installing WSL for the first time
-* If your .nii data is stored on a network drive, you will need the full address to the network drive
 * The admin password to the linux/unix machine
   * If you are working on a previously created WSL then you need the admin password to the WSL and not the PC (they may be different)
 * Basic familiarity with unix terminal commands such as `cd` and `mkdir`, basic understanding of bashrc in linux, and only very basic competency with a shell text editor if not on a PC
   * These instructions attempt to cover everything possible but some limited experience with unix can help you if you run into problems
 
 > [!NOTE]
-> By convention, unix and linux specify file paths using `/` and Windows OS uses `\`. For the purposes of this readme, I use `/` for paths on the linux/unix machine and `\` to indicate a filepath accessed via the PC
+> By convention, unix and linux specify file paths using `/` and Windows OS uses `\`. For the purposes of this readme, I use `/` for paths that are typed into the linux/unix terminal and `\` to indicate the address to a file accessed via the PC's Windows File Explorer.
 
 > [!TIP]
 > On unix/linux the `~` symbol means “home directory”. So if you see `~/.bashrc`, then the full path to that file is `/Users/USERNAME/.bashrc` on a mac or `/home/USERNAME/.bashrc` on a linux
