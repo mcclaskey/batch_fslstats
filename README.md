@@ -7,7 +7,12 @@ These functions work very quickly and require minimal coding knowledge, but some
 
 
 > [!IMPORTANT]
-> FSL only works in a linux/unix environment. If you have a PC then it will run inside a WSL. For the purposes of these directions, any mention of a "terminal window" or "command line" is referring to a unix or linux terminal and not a PC terminal. In other words if you are on a PC running WSL2 or Docker, open the linux terminal and run commmands there.
+> FSL only works in a linux/unix environment. If you have a PC then it will run inside a WSL. For the purposes of this readme, any mention of a "terminal window" or "command line" is referring to a unix or linux terminal and not a PC terminal. In other words if you are on a PC running WSL2 or Docker, open the linux terminal and run commmands there.
+
+
+> [!NOTE]
+> This readme is written with the assumption you will be using virtualenvwrapper to manage your environments. If you are using a different way of managing your environments, skip all `workon batch_fslstats_env` lines and instead just activate your environment and `cd` to repo dir.
+
 
 # Instructions
 If this is your first time working with the scripts, first run through the setup instructions [here](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-documentation/README.md#setup). 
@@ -16,9 +21,6 @@ If it's been a while since you set up the scripts, pull any new changes from the
 workon batch_fslstats_env
 git pull
 ```
-
-> [!NOTE]
-> If you are using a different way of managing your environments, skip the `workon batch_fslstats_env` line and instead just `cd` to repo dir
 
 ## 1. Set up a list of files to run fslstats on
 First you need to put together a list of your .nii files. Save this list as a single-column .csv file where the first row says "input_file" and each subsequent row contains the full file path to a .nii file. Each .nii file will have its average value calculated.
