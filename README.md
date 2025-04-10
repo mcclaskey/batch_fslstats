@@ -107,7 +107,7 @@ Open a shell/command window/terminal, hereafter called terminal, and type
 ```
 git version
 ```
-If nothing comes up then you do not have git installed. Follow [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to find the command that installs it.
+If nothing comes up then you need to install git. See the top of [this page](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to find the command that installs it.
 
 
 ### 5. Clone this repo to your computer
