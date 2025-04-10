@@ -1,6 +1,8 @@
 # batch_fslstats
 ### Get the mean value of a set of .nii files (using fslstats -M) and save the output to a .csv file
-batch_fslstats is a small set of functions that use fslstats to get mean values for a set of .nii files and compile output to a csv file. Can be run on a Mac, Linux, or PC. The scripts currently only run the fslstats command `fslstats -M`. [Read more about FSL here](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/). 
+batch_fslstats is a small set of functions that call `fslstats -M` to get mean values for a set of .nii files and compile output to a csv file. Can be run on a Mac, Linux, or PC. 
+
+Mean values are calculated using the FSL call `fslstats -M`. This means that the output values are the mean intensity value of the .nii file, excluding empty voxels. [Read more about FSL here](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/). 
 
 These functions work very quickly and require minimal coding knowledge, but some limited familiarity with unix to do the initial setup. Setup can be time-consuming if you need to do the entire thing (FSL can take a long time to install), but once installed, the scripts can process ~200 .nii files in 90 seconds. Your mileage may vary depending on your machine's resources.
 
@@ -11,7 +13,7 @@ These functions work very quickly and require minimal coding knowledge, but some
 # Instructions
 If this is your first time working with the scripts, first run through the setup instructions [here](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-documentation/README.md#setup).
 
-If it's been a while since you set up the scripts, pull any new changes from the repo by running the following lines in your WSL terminal:
+If it's been a while since you set up the scripts, pull any new changes from the repo by running the following lines in your terminal:
 ```
 workon batch_fslstats_env
 git pull
@@ -28,9 +30,6 @@ First you need to put together a list of your .nii files. Save this list as a si
 
 ## 2. Run scripts 
 
-> [!IMPORTANT]
-> If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files.
-
 Open a terminal and run the following 2 lines:
 ```
 workon batch_fslstats_env
@@ -41,10 +40,12 @@ A file selection dialogue box will now open. Select the .csv file you created in
 
 When it is done you will have a .csv file in the same directory as the input .csv file. The output file's name will be be the same as the input filename but will have a timestamp and the suffix '*_compiled'.
 
+# TROUBLESHOOTING
+The following section lists some issues that I have come across that may be causing problems. WIP
 
+- If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files. A good check for this is to use the `ls` command to print contents of directories
 
-
-# How to set up batch_fslstats on a new computer:
+# HOW TO SETUP BATCH_FSLSTATS TO RUN ON A NEW COMPUTER:
 
 ## A. Setup requirements
 * Linux or Mac, or a PC running either Windows 10 version 2004 and higher (Build 19041 and higher) or Windows 11
