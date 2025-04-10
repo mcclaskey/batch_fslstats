@@ -44,13 +44,13 @@ The following section lists some issues that I have come across that may be caus
 - If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files. A good check for this is to use the `ls` command to print contents of directories
 
 # Setup (Advanced Users)
-If you are an advanced user with git, python and FSL on your path and an established system for managing environments, setup is very standard: 
+If you are an advanced user with git, python and FSL on your path and an established system for managing environments (such as conda), setup is very standard: 
 1. activate an environment that has access to FSL and pandas or create a new one
 2. clone this repo with `git clone git@github.com:mcclaskey/batch_fslstats.git`
 3. cd to repo directory
 4. run `pip install -r requirements.txt` if you don't have pandas in your env
 
-Alternately, if you are an advanced user working on a machine that has FSL installed, you can start at setup step 4.
+Alternately, if you are working on a machine that has FSL, python, and git installed but you're not sure about environment, you can start at [setup step 5](https://github.com/mcclaskey/batch_fslstats/tree/iss3-add-to-readme?tab=readme-ov-file#5-install-the-virtualenvwrapper-python-package-for-path-management).
 
 # Setup (Full Instructions)
 
@@ -149,7 +149,7 @@ git version
 ```
 If nothing comes up then you need to install git. See the top of [this page](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to find the command that installs it.
 
-### 5. Install the virtualenvwrapper python package for path management
+### 5. Install virtualenvwrapper python package for path management if necessary
 
 These steps are also found in [the install page for virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) but I will detail them here. If these steps fail, see that webpage for troubleshooting.
 
@@ -157,9 +157,8 @@ Open a new terminal window and type:
 ```
 pip3 install virtualenvwrapper
 ```
-
 > [!NOTE]
-> If that doesn’t work, your computer may have pip and not pip3. Try `pip install virtualenvwrapper`. However, this may mean that you have an older version of python.
+> If pip3 doesn’t work, your computer may have pip and not pip3. Try `pip install virtualenvwrapper`. However, this may mean that you have an older version of python.
 
 Next, print the path to the `virtualenvwrapper.sh` file by typing:
 ```
@@ -223,6 +222,9 @@ Open a new terminal window and type:
 ```
 mkvirtualenv batch_fslstats_env
 ```
+> [!NOTE]
+> If this step doesn't work then see setup step 5 above
+
 This will create the environment and also activate it. It will print something like this:
 
 ![image](https://github.com/user-attachments/assets/c289d83f-6b36-49cf-9c95-2c457d83cf30)
