@@ -165,10 +165,9 @@ Open a new terminal window and type:
 pip3 install virtualenvwrapper
 ```
 
-If that doesn’t work, your computer may have pip and not pip3. Try:
-```
-pip install virtualenvwrapper
-```
+> [!NOTE]
+> If that doesn’t work, your computer may have pip and not pip3. Try `pip install virtualenvwrapper`. However, this may mean that you have an older version of python.
+
 Next, print the path to the `virtualenvwrapper.sh` file by typing:
 ```
 which virtualenvwrapper.sh
@@ -273,7 +272,7 @@ Close the terminal window.
 Open a fresh terminal window and run the following to activate the batch_fslstats_env and install the required packages:
 ```
 workon batch_fslstats_env
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 You are now ready to run the main scripts using [these instructions](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-readme-for-clarify/README.md#instructions)
 
