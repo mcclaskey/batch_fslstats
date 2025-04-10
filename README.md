@@ -110,7 +110,7 @@ git version
 If nothing comes up then you need to install git. See the top of [this page](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to find the command that installs it.
 
 
-### 5. Clone this repo to your computer
+### 5. Clone this repository (repo) to your computer
 Open a terminal and change directories to where you will store the repo (or use `mkdir` to create a new folder). In this example I am using `~/repos/`. 
 Once you are in the folder where the repo will be stored, clone the repo by typing:
 ```
@@ -174,11 +174,11 @@ Then type ctrl+X to close the nano text editor (if not using Windows). When it a
 
 Close the terminal window.
 
-CMcC’s notes for the lab:
-* If you add it to the .bashrc file then those commands will only run if you open a normal bash shell. If you add it to the .zshrc file then they will run every time you open a zsh shell.
-* Your goal is to set it up so that those lines run every time you open the shell you’re going to use, otherwise the computer won’t be able to find the environment
-* The lines you added must always be at the bottom of the file, so that any modifications to the path will be known to virtualenvwrapper. If it ever breaks in the future, it may be that relevant path changes were inserted below those virtualenvwrapper lines (for example FSL)
-* If you find that you can’t edit the `~/.zshrc` or `~/.basrc` file to add those three lines, then you will need to manually run them each time a new shell is opened. The 1st and 3rd are the most important ones to run and the 2nd line can be skipped
+_CMcC’s notes for the lab:_
+* _If you add it to the .bashrc file then those commands will only run if you open a normal bash shell. If you add it to the .zshrc file then they will run every time you open a zsh shell._
+* _Your goal is to set it up so that those lines run every time you open the shell you’re going to use, otherwise the computer won’t be able to find the environment_
+* _The lines you added must always be at the bottom of the file, so that any modifications to the path will be known to virtualenvwrapper. If it ever breaks in the future, it may be that relevant path changes were inserted below those virtualenvwrapper lines (for example FSL)_
+* _If you find that you can’t edit the `~/.zshrc` or `~/.basrc` file to add those three lines, then you will need to manually run them each time a new shell is opened. The 1st and 3rd are the most important ones to run and the 2nd line can be skipped_
 
 ### 7. Create the virtual environment (batch_fslstats_env)
 
@@ -237,18 +237,15 @@ It should print the full path to the batch_fslstats directory. If these steps do
 Close the terminal window.
 
 ### 7. Install python packages into the batch_fslstats_env:
-Open a fresh terminal window and run the following to activate the batch_fslstats_env:
+Open a fresh terminal window and run the following to activate the batch_fslstats_env and install the required packages:
 ```
 workon batch_fslstats_env
-```
-> [!NOTE]
-> Any time you need to run the scripts, open a terminal and run `workon batch_fslstats_env` to activate the environment. Code will only work in the active environment.
-
-With the environment activated as shown above, run the follow command in the command line to load the required packages into the environment:
-```
 pip install -r requirements.txt
 ```
-You are now ready to run the main scripts.
+You are now ready to run the main scripts using [these instructions](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-readme-for-clarify/README.md#instructions)
+
+> [!NOTE]
+> Any time you need to work with this project, open a terminal and run `workon batch_fslstats_env` to activate the environment. Code will only work in the active environment.
 
 
 
