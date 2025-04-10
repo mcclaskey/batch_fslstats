@@ -1,6 +1,6 @@
 # batch_fslstats
 ### Get the mean value of a set of .nii files (using fslstats -M) and save the output to a .csv file
-batch_fslstats is a small set of functions that run fslstats on a Windows PC and compile output to a csv file. Use this package if you have a set of .nii files and you need the mean value of each. The scripts currently only run the fslstats command `fslstats -M`. [Read more about FSL here](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/).
+batch_fslstats is a small set of functions that run fslstats and compile output to a csv file. Use this package if you have a set of .nii files and you need the mean value of each. The scripts currently only run the fslstats command `fslstats -M`. [Read more about FSL here](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/). These directions are optimized for a PC.
 
 These functions work very quickly and require minimal coding knowledge, but some limited familiarity with unix to do the initial setup. Setup can be time-consuming if you need to do the entire thing (FSL can take a long time to install), but once set up the scripts can process ~200 .nii files in 90 seconds. Your mileage may vary depending on your machine's resources.
 
@@ -183,9 +183,9 @@ Next you need modify the `.bashrc` file to do 3 things:
 Detailed instructions for this step are currently explained [on this page](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file) but I will list the minimum necessary steps here. You will now need to open your `.bashrc` file in a text editor. 
 
 > [!TIP]
-> If you are on a WSL you can usually open the file in your Windows File Explorer by finding the “Linux” tab in the sidebar. The official address of your wsl is likely \\wsl.localhost\. 
+> If you are on a WSL you can usually open the file in your Windows File Explorer by finding the “Linux” tab in the sidebar. The official address of your wsl is likely `\\wsl.localhost\`. 
 
-Otherwise, open it directly in Linux by typing this in the command line if you use a bash shell:
+Otherwise, open it directly in Linux by typing this in the command line if you use a bash shell (which is the default for WSL):
 ```
 sudo nano ~/.bashrc
 ```
