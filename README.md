@@ -170,7 +170,7 @@ which virtualenvwrapper.sh
 ```
 The location to the shell file will print into the terminal window. Make a note of it because you will need it for the next step.
 
-Next you need modify the `.bashrc` file to do 3 things: 
+Next you need to modify the `.bashrc` file to do 3 things: 
 1. define where to store the virtual environments
 2. define the default project location, and
 3. run the `virtualenvwrapper.sh` file.
