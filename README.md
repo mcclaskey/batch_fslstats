@@ -71,7 +71,7 @@ Alternately, if you are working on a machine that has FSL, python, and git insta
 > [!NOTE]
 > By convention, unix and linux specify file paths using `/` and Windows OS uses `\`. For the purposes of this readme, I use `/` for paths that are typed into the linux/unix terminal and `\` to indicate the address to a file accessed via the PC's Windows File Explorer.
 
-> [!TIP]
+> [!NOTE]
 > On unix/linux the `~` symbol means “home directory”. So if you see `~/.bashrc`, then the full path to that file is `/Users/USERNAME/.bashrc` on a mac or `/home/USERNAME/.bashrc` on a linux
 
 ## B. Setup recommmendations
@@ -99,15 +99,15 @@ sudo mount -t drvfs C: /mnt/c/
 
 When prompted, enter the password to your WSL distro and press enter. Repeat for other Z: or D: drives as needed to access your data. 
 
-> [!NOTE]
-> If you have data on a network drive, first mount the network drive to the PC and assign it a letter, then mount the drive to the WSL by the letter.
+> [!IMPORTANT]
+> If you have data on a network drive, you can first mount the network drive to the PC and assign it a letter, then mount the drive to the WSL by the letter.
 
 If you want to set up your WSL so that these drives automatically attach upon starting the WSL, you need to add these `mount` commands to your `.bashrc` file. To do this, open File Explorer in your PC and find the wsl machine. I usually find it through the File Explorer's sidebar. Then navigate to your WSL home directory and locate the .bashrc file. As an example, the address to my WSL .bashrc is `\\wsl.localhost\Ubuntu\home\mcclaskey\.bashrc`. Open the `.bashrc` file in notepad, scroll to the bottom, add the mount commands, then save and close the file.  
 
 >[!TIP]
-> If you don't see the .bashrc file, it may be hidden. Check that your file explorer is set to show hidden files. Alternately, you can edit this .bashrc file inside your WSL using a shell text editor, but this is very tricky to do.
+> If you don't see the .bashrc file, it may be hidden. Check that your file explorer is set to show hidden files. Alternately, you can edit this .bashrc file inside your WSL using a shell text editor such as nano or gedit or vim. [Choose wisely](https://en.wikipedia.org/wiki/Editor_war).
 
-Close and reopen your WSL terminal. If this worked you should be prompted for your admin password. Enter it and press enter.
+Close and reopen your WSL terminal. If this worked you should be prompted for your admin password. 
 
 ### 2. Install FSL
 
@@ -157,9 +157,7 @@ If nothing comes up then you need to install git. See the top of [this page](htt
 
 ### 5. Install virtualenvwrapper python package for path management if necessary
 
-These steps are also found in [the install page for virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) but I will detail them here. If these steps fail, see that webpage for troubleshooting.
-
-Open a new terminal window and type:
+These steps are also found in [the install page for virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html). Open a new terminal window and type:
 ```
 pip3 install virtualenvwrapper
 ```
@@ -179,8 +177,7 @@ Next you need modify the `.bashrc` file to do 3 things:
 
 Detailed instructions for this step are currently explained [on this page](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file) but I will list the minimum necessary steps here. You will now need to open your `.bashrc` file in a text editor. 
 
-> [!TIP]
-> If you are on a WSL you can usually open the file in your Windows File Explorer by finding the “Linux” tab in the sidebar. The official address of your wsl is likely `\\wsl.localhost\`. 
+If you are on a WSL you can open the file in your Windows File Explorer. The official address of your wsl is likely `\\wsl.localhost\`, but you may also be able to navigate there using a link in the sidebar.
 
 Otherwise, open it directly in Linux by typing this in the command line if you use a bash shell (which is the default for WSL):
 ```
@@ -200,7 +197,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 ```
 But replace `/usr/local/bin/virtualenvwrapper.sh` with the location to the `virtualenvwrapper.sh` location you looked up above. 
 
-Then type ctrl+X to close the nano text editor (if not using Windows). When it ask if you want to save your changes, press Y on the keyboard to say yes. When it asks you to confirm the filename, press enter to save the file under its current name.
+Save and close the file. If using nano text editor, these are the steps to do so: type `ctrl+X` to close the nano text editor, then enter `Y` when asked if you want to save your changes, then when asked to confirm the filename, press enter to save the file under its current name.
 
 Close the terminal window.
 
