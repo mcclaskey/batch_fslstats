@@ -50,8 +50,8 @@ The following section lists some issues that I have come across that may be caus
 - If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files. A good check for this is to use the `ls` command to print contents of directories
 
 # Setup (Advanced Users)
-If you are an advanced user with git, python and FSL on your path and an established system for managing environments (such as conda), setup is very standard: 
-1. activate an environment that has access to FSL and pandas or create a new one
+If you are an FSL user with git, python and FSL on your path and an established system for managing environments (such as conda), no special setup is needed: 
+1. create/activate an environment that has access to FSL
 2. cd to where you store repos and clone this repo with `git clone git@github.com:mcclaskey/batch_fslstats.git`
 3. cd to repo directory
 4. run `pip install -r requirements.txt` if you don't have pandas in your env
