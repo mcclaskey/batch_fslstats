@@ -127,26 +127,23 @@ Otherwise, go to the FSL installation page (currently [here](https://fsl.fmrib.o
 
 ### 3. Install Python
 
-Python often comes natively on new machines but you may need to download it. Open a shell/command window/terminal, hereafter called terminal, and type:
+Python often comes natively on new machines but you may need to download it. To check if it's installed, run the following command in the terminal:
 
 ```
-python
+python --version
 ```
 
-If that doesn’t work, your computer may not have the python alias. Instead try:
+If that doesn’t work, your computer may not have the python alias and you may need to use `python3` instead of `python` going forward:
 
 ```
-python3
+python3 --version
 ```
 
-> [!NOTE]
-> If you are missing the python alias, you may need to use `python3` anytime the current directions say `python`
 
 If nothing is found, download the latest stable python release from the main python downloads page [here](https://www.python.org/downloads/) and try again. 
 
-If a version of python is found, it will start in the terminal. Scan the lines to check the version. Ensure you have a version that is at least 3.11. If it’s a few years old, it’s probably a good idea to download a newer version just in case. 
-
-To quit python, type `quit()`.
+> [!NOTE]
+> These scripts were developed with python 3.11+. If your version is older than that, it might be a good idea to download a newer version just in case. 
 
 ### 4. Install git
 Git also often comes natively installed on most WSL linux distros. In your terminal window, run the following command to check for git:
@@ -159,11 +156,8 @@ If nothing comes up then you need to install git. See the top of [this page](htt
 
 These steps are also found in [the install page for virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html). Open a new terminal window and type:
 ```
-pip3 install virtualenvwrapper
+pip install virtualenvwrapper
 ```
-> [!NOTE]
-> If pip3 doesn’t work, your computer may have pip and not pip3. Try `pip install virtualenvwrapper`. However, this may mean that you have an older version of python.
-
 Next, print the path to the `virtualenvwrapper.sh` file by typing:
 ```
 which virtualenvwrapper.sh
@@ -216,7 +210,7 @@ git clone git@github.com:mcclaskey/batch_fslstats.git
 This has created a folder called `/batch_fslstats/` inside the current folder. 
 
 > [!TIP] 
-> You will need to know the path to this repository directory for subsequents steps, so make a note of it here.
+> You will need to know the path to this repository for subsequents steps, so make a note of it here.
 > As an example, because mine is stored in `~/repos/`, the path to my repository is  `~/repos/batch_fslstats/`.
 
 ### 7. Create the virtual environment (batch_fslstats_env) and link it with the repo
@@ -234,7 +228,7 @@ This will create the environment and also activate it. It will print something l
 
 When the environment is activated you will see at the start of each line as in the above screenshot.
 
-Now `cd` to the main repository directory. If following my example, your `cd` command will look like this:
+Now `cd` to the main repository. If following my example, your `cd` command will look like this:
 ```
 cd ~/repos/batch_fslstats
 ```
