@@ -5,6 +5,9 @@ Mean values are calculated using the FSL call `fslstats -M`. This means that the
 
 These functions work very quickly and require minimal coding knowledge, but some limited familiarity with unix to do the initial setup. Setup can be time-consuming if you need to do the entire thing (FSL can take a long time to install), but once installed, the scripts can process ~200 .nii files in 90 seconds. Your mileage may vary depending on your machine's resources.
 
+> [!WARNING]
+> These scripts only work with 2D .nii files.
+
 # Instructions
 > [!IMPORTANT]
 > FSL only works in a linux/unix environment. If you have a PC then it will run inside a WSL. For the purposes of this readme, any mention of a "terminal window" or "command line" is referring to a unix or linux terminal and not a PC terminal. In other words if you are on a PC running WSL2 or Docker, open the linux terminal and run commmands there.
