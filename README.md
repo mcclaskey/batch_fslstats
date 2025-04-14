@@ -5,18 +5,18 @@ Mean values are calculated using the FSL call `fslstats -M`. This means that the
 
 These functions work very quickly and require minimal coding knowledge, but some limited familiarity with unix to do the initial setup. Setup can be time-consuming if you need to do the entire thing (FSL can take a long time to install), but once installed, the scripts can process ~200 .nii files in 90 seconds. Your mileage may vary depending on your machine's resources.
 
-
+# Instructions
 > [!IMPORTANT]
 > FSL only works in a linux/unix environment. If you have a PC then it will run inside a WSL. For the purposes of this readme, any mention of a "terminal window" or "command line" is referring to a unix or linux terminal and not a PC terminal. In other words if you are on a PC running WSL2 or Docker, open the linux terminal and run commmands there.
 
 
 > [!NOTE]
-> This readme is written with the assumption you will be using virtualenvwrapper to manage your environments. If you are using a different way of managing your environments, skip all `workon batch_fslstats_env` lines and instead just activate your environment and `cd` to repo dir.
+> This readme is written with the assumption you will be using virtualenvwrapper to manage your environments. If you are using a different way of managing your environments, disregard all `workon batch_fslstats_env` lines and instead just activate your environment and `cd` to repo dir.
 
 
-# Instructions
+
 If this is your first time working with the scripts, first run through the setup instructions [here](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-documentation/README.md#setup). 
-If it's been a while since you set up the scripts, pull any new changes from the repo by running the following lines in your terminal:
+If it's been a while since you set up the scripts and you have not made any alterations to the code, you can run the following lines in your terminal to update the code to the latest version:
 ```
 workon batch_fslstats_env
 git pull
