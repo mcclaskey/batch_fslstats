@@ -1,5 +1,5 @@
 # batch_fslstats
-batch_fslstats is a small set of functions that use FSL to get mean values for a set of .nii files and compile output to a csv file. Can be run on a Mac, Linux, or PC. 
+batch_fslstats is a small set of functions that use FSL and python version 3.11+ to get mean values for a set of .nii files and compile output to a csv file. Can be run on a Mac, Linux, or PC. 
 
 Mean values are calculated using the FSL call `fslstats -M`. This means that the output values are the mean intensity value of the .nii file, excluding empty voxels. [Read more about FSL here](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/). 
 
@@ -54,7 +54,7 @@ The following section lists some issues that I have come across that may be caus
 - The default shell file for MacOS recently changed from `bash` to `zsh`. If you previously installed FSL and/or virtualenvwrapper on an older macOS that ran `bash` but then updated to a newer MacOS that uses `zsh`, you need to migrate the shell configuration lines from your .`bashrc` file to your `.zshrc` file. [This page from FSL](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/install/configuration) provides more details on how to do this for FSL, but you can do the same thing for the virtualenvwrapper configuration commands as well
 
 # Setup (Advanced Users)
-If you are an FSL user with git, python and FSL on your path and an established system for managing environments (such as conda), no special setup is needed: 
+If you are an FSL user with git, python (version 3.11+) and FSL on your path and an established system for managing environments (such as conda), no special setup is needed: 
 1. create/activate an environment that has access to FSL
 2. cd to where you store repos and clone this repo, e.g. `git clone https://github.com/mcclaskey/batch_fslstats.git`
 3. cd to repo directory
@@ -71,7 +71,7 @@ Alternately, if you are working on a machine that has FSL, python, and git insta
   * If you are working on a previously created WSL then you need the admin password to the WSL and not the PC (they may be different)
 * Basic familiarity with unix terminal commands such as `cd` and `mkdir`
   * These instructions attempt to cover everything possible but some limited experience with unix can help you if you run into problems
-  * if you want to quickly learn a lot of useful unix basics, I love [this page](https://cerfacs.fr/coop/unix-terminal) for explanations of basic unix commands, things to avoid, and how to use text editors, among other things.
+  * if you want to quickly learn a lot of useful unix basics, I like [this page](https://cerfacs.fr/coop/unix-terminal) for explanations of basic unix commands, things to avoid, and how to use text editors, among other things.
 
 > [!NOTE]
 > By convention, unix and linux specify file paths using `/` and Windows OS uses `\`. For the purposes of this readme, I use `/` for paths that are typed into the linux/unix terminal and `\` to indicate the address to a file accessed via the PC's Windows File Explorer.
@@ -95,25 +95,41 @@ Follow Microsoft's instructions to set up a WSL. As of the time of this writing,
 > [!TIP]
 > Don't forget to restart your computer after installing the linux distro.
 
-Next mount your PC's data drives to your WSL so you can access your neuroimaging files. Run the following command in the WSL terminal:
+Next check if your PC's data drives are accessible by your WSL. Run the following command in the WSL terminal:
 
 ```
-sudo mount -t drvfs C: /mnt/c/
+ls /mnt/c/
+```
+
+If nothing is found, you may need to manually create a directory and mount the drives. First create a directory using the command, replacing c with another letter if necessary:
+
+```
+sudo mkdir /mnt/c
 ```
 > [!TIP]
 > Right click in the WSL terminal to paste text. The `ctrl-v` shortcut won't work.
 
-When prompted, enter the password to your WSL distro and press enter. Repeat for other Z: or D: drives as needed to access your data. 
+Enter your password when prompted. Then attach the windows folder using the command: 
+```
+sudo mount -t drvfs C: /mnt/c/
+```
+Repeat these 2 sudo commands for other lettered drives as needed to access your data. 
 
 > [!IMPORTANT]
 > If you have data on a network drive, you can first mount the network drive to the PC and assign it a letter, then mount the drive to the WSL by the letter.
 
-If you want to set up your WSL so that these drives automatically attach upon starting the WSL, you need to add these `mount` commands to your `.bashrc` file. To do this, open File Explorer in your PC and find the wsl machine. I usually find it through the File Explorer's sidebar. Then navigate to your WSL home directory and locate the .bashrc file. As an example, the address to my WSL .bashrc is `\\wsl.localhost\Ubuntu\home\mcclaskey\.bashrc`. Open the `.bashrc` file in notepad, scroll to the bottom, add the mount commands, then save and close the file.  
+If you want to set up your WSL so that these drives automatically attach upon starting the WSL, you need to add these `mount` commands to your shell configuration file. To do this, open the `.bashrc` file in notepad using the following command:
 
->[!TIP]
-> If you don't see the .bashrc file, it may be hidden. Check that your file explorer is set to show hidden files. Alternately, you can edit this .bashrc file inside your WSL using a shell text editor such as nano or [emacs or vim](https://en.wikipedia.org/wiki/Editor_war). I recommend nano.
+```
+notepad.exe ~/.bashrc
+```
+
+Then scroll to the bottom, add the mount commands, and save and close the file.  
 
 Close and reopen your WSL terminal. If this worked you should be prompted for your admin password. 
+
+> [!NOTE]
+> The way that windows mounts drives to WSL is constantly evolving and may partially depend on whether you are using Windows 10 or 11. If something isn't working, see [this page](https://learn.microsoft.com/en-us/windows/wsl/wsl2-mount-disk) for more details.
 
 ### 2. Install FSL
 
@@ -184,9 +200,13 @@ Next you need to modify the shell configuration file to do 3 things:
 
 Detailed instructions for this step are currently explained [on this page](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file) but I will list the minimum necessary steps here. 
 
-Your shell configuration file is either `.bashrc` if on linux or `.zshrc` if on a newer mac and these are located in your home `~/` directory. 
+Your shell configuration file is either `.bashrc` if on linux or `.zshrc` if on a newer mac. 
 
-If you are on a WSL, open your `.bashrc` file in notepad via your Windows File Explorer. The official address of your wsl is likely `\\wsl.localhost\`, thus your `.bashrc` file is likely  `\\wsl.localhost\Ubuntu\home\USERNAME\.bashrc`. You may also be able to navigate there using a link in the sidebar.
+If you are on a WSL, open your `.bashrc` file in notepad using the following command:
+
+```
+notepad.exe ~/.bashrc
+```
 
 Otherwise, open it directly in Linux by typing this in the command line if you use a bash shell (which is the default for WSL):
 ```
