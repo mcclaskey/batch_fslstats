@@ -69,8 +69,9 @@ Alternately, if you are working on a machine that has FSL, python, and git insta
 * Ability to restart your machine if you are on a PC installing WSL for the first time
 * The admin password to the linux/unix machine
   * If you are working on a previously created WSL then you need the admin password to the WSL and not the PC (they may be different)
-* Basic familiarity with unix terminal commands such as `cd` and `mkdir`, basic understanding of bashrc in linux, and only very basic competency with a shell text editor if not on a PC
+* Basic familiarity with unix terminal commands such as `cd` and `mkdir`
   * These instructions attempt to cover everything possible but some limited experience with unix can help you if you run into problems
+  * if you want to quickly learn a lot of useful unix basics, I love [this page](https://cerfacs.fr/coop/unix-terminal) for explanations of basic unix commands, things to avoid, and how to use text editors, among other things.
 
 > [!NOTE]
 > By convention, unix and linux specify file paths using `/` and Windows OS uses `\`. For the purposes of this readme, I use `/` for paths that are typed into the linux/unix terminal and `\` to indicate the address to a file accessed via the PC's Windows File Explorer.
@@ -80,7 +81,8 @@ Alternately, if you are working on a machine that has FSL, python, and git insta
 
 ## B. Setup recommmendations
 * WSL2 on windows running the default Ubuntu distribution
-  
+* Understanding of shell configuration files and the differences between them. [This page](https://unix.stackexchange.com/questions/129143/what-is-the-purpose-of-bashrc-and-how-does-it-work) and [this page](https://stackoverflow.com/questions/415403/whats-the-difference-between-bashrc-bash-profile-and-environment) are some of the more informative pages I've found. With a few exceptions that aren't relevant here, shell configuration files are generally located in your home directory.
+
 ## C. Setup instructions
 
 ### 1. Install WSL2 if you are on a PC
@@ -116,9 +118,9 @@ Close and reopen your WSL terminal. If this worked you should be prompted for yo
 ### 2. Install FSL
 
 > [!NOTE]
-> I know from my colleagues here at MUSC that FSL also works inside [PyDesigner via NeuroDock](https://pydesigner.readthedocs.io/en/latest/index.html), which uses Docker Desktop. However, one of the first steps in installing Docker Desktop and PyDesigner is installing WSL2, so I just skipped the extra Docker steps. But if you have FSL already installed on some unix/linux machine, then feel free to use that instead.
+> FSL also works inside [PyDesigner via NeuroDock](https://pydesigner.readthedocs.io/en/latest/index.html), which uses Docker Desktop. However, one of the first steps in installing Docker Desktop and PyDesigner is installing WSL2, so I just skipped the extra Docker steps. But if you have FSL already installed on some unix/linux virtual machine, then feel free to use that instead.
 
-Open a shell/command window/terminal and type the following command into it:
+Open a terminal and type the following command into it:
 ```
 fsl
 ```
@@ -173,16 +175,18 @@ Next, print the path to the `virtualenvwrapper.sh` file by typing:
 ```
 which virtualenvwrapper.sh
 ```
-The location to the shell file will print into the terminal window. Make a note of it because you will need it for the next step.
+The location to the shell file will print into the terminal window. Make a note of it because you will need it for your shell configuration file.
 
 Next you need to modify the shell configuration file to do 3 things: 
 1. define where to store the virtual environments
 2. define the default project location, and
 3. run the `virtualenvwrapper.sh` file.
 
-Your shell configuration file is either `.bashrc` if on linux or `.zshrc` if on a newer mac and these are located in your home `~/` directory. Detailed instructions for this step are currently explained [on this page](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file) but I will list the minimum necessary steps here. You will now need to open your `.bashrc` file in a text editor. 
+Detailed instructions for this step are currently explained [on this page](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file) but I will list the minimum necessary steps here. 
 
-If you are on a WSL, open your `.bashrc` file in your Windows File Explorer. This file is located in the home directory of your WSL's username. The official address of your wsl is likely `\\wsl.localhost\`, thus your `.bashrc` file is likely  `\\wsl.localhost\Ubuntu\home\USERNAME\.bashrc`. You may also be able to navigate there using a link in the sidebar.
+Your shell configuration file is either `.bashrc` if on linux or `.zshrc` if on a newer mac and these are located in your home `~/` directory. 
+
+If you are on a WSL, open your `.bashrc` file in notepad via your Windows File Explorer. The official address of your wsl is likely `\\wsl.localhost\`, thus your `.bashrc` file is likely  `\\wsl.localhost\Ubuntu\home\USERNAME\.bashrc`. You may also be able to navigate there using a link in the sidebar.
 
 Otherwise, open it directly in Linux by typing this in the command line if you use a bash shell (which is the default for WSL):
 ```
