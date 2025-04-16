@@ -231,6 +231,10 @@ Open a new terminal window and type:
 mkvirtualenv batch_fslstats_env
 ```
 > [!NOTE]
+> If you are on a Mac, you will see (Betach_fslstats_env) without the (base), as in the following screenshot: <img width="362" alt="image" src="https://github.com/user-attachments/assets/fb0ce957-4ff9-4793-8ae8-852d852df14f" />
+
+
+> [!NOTE]
 > If this step doesn't work then see setup step 5 above
 
 This will create the environment and also activate it. It will print something like this:
