@@ -286,7 +286,7 @@ It should print the full path to the batch_fslstats directory. If these steps do
 Open a fresh terminal window and run the following to activate the batch_fslstats_env and install the required packages:
 ```
 workon batch_fslstats_env
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 You are now ready to run the main scripts using [these instructions](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-readme-for-clarify/README.md#instructions)
 
