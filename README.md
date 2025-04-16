@@ -25,7 +25,7 @@ workon batch_fslstats_env
 git pull
 ```
 
-## 1. Set up a list of files to run fslstats on
+## 1. Create list of .nii files
 First you need to put together a list of your .nii files. Save this list as a single-column .csv file where the first row says "input_file" and each subsequent row contains the full file path to a .nii file. Each .nii file will have its average value calculated.
 
 > [!IMPORTANT]
