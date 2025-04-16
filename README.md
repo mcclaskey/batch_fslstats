@@ -209,7 +209,8 @@ Close the terminal window.
 _CMcC’s notes for the lab:_
 * _If you add it to the .bashrc file then those commands will only run if you open a normal bash shell. If you add it to the .zshrc file then they will run every time you open a zsh shell._
 * _Your goal is to set it up so that those lines run every time you open the shell you’re going to use, otherwise the computer won’t be able to find the environment_
-* _The lines you added must always be at the bottom of the file, so that any modifications to the path will be known to virtualenvwrapper. If it ever breaks in the future, it may be that relevant path changes were inserted below those virtualenvwrapper lines (for example FSL)_
+* _The lines you added must always be at the bottom of the file, so that any modifications to the path will be known to virtualenvwrapper. If it ever breaks in the future, it may be that relevant path changes were inserted below those virtualenvwrapper lines (for example FSL)._
+* _NOTE: sometimes FSL adds its configuration lines to ~/.zprofile or ~/.bash_profile. These configuration files run everytime you log in to your username, rather than every time you open a shell. This may be why you don't see FSL's path configuration when you open your configuration file. That's ok, you can add the above virtualenv configuration commands as normal._
 * _If you find that you can’t edit the `~/.zshrc` or `~/.basrc` file to add those three lines, then you will need to manually run them each time a new shell is opened. The 1st and 3rd are the most important ones to run and the 2nd line can be skipped_
 
 ### 6. Clone this repository (repo) to your computer
