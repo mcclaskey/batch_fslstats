@@ -214,7 +214,15 @@ _CMcC’s notes for the lab:_
 * _If you find that you can’t edit the `~/.zshrc` or `~/.basrc` file to add those three lines, then you will need to manually run them each time a new shell is opened. The 1st and 3rd are the most important ones to run and the 2nd line can be skipped_
 
 ### 6. Clone this repository (repo) to your computer
-Open a terminal and change directories to where you will store the repo (or use `mkdir` to create a new folder, which I did using `mkdir ~/repos/`). In this example I am using `~/repos/`. 
+Open a terminal and change directories to where you will store the repo. 
+
+> [!TIP]
+> You can create a dir using `mkdir`. For example, here is what I did to create one called /repos/:
+> ```
+> mkdir ~/repos/
+> cd ~/repos/
+> ```
+
 Once you are in the folder where the repo will be stored, clone the repo with this command:
 ```
 git clone https://github.com/mcclaskey/batch_fslstats.git
