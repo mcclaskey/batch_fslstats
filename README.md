@@ -109,7 +109,7 @@ When prompted, enter the password to your WSL distro and press enter. Repeat for
 If you want to set up your WSL so that these drives automatically attach upon starting the WSL, you need to add these `mount` commands to your `.bashrc` file. To do this, open File Explorer in your PC and find the wsl machine. I usually find it through the File Explorer's sidebar. Then navigate to your WSL home directory and locate the .bashrc file. As an example, the address to my WSL .bashrc is `\\wsl.localhost\Ubuntu\home\mcclaskey\.bashrc`. Open the `.bashrc` file in notepad, scroll to the bottom, add the mount commands, then save and close the file.  
 
 >[!TIP]
-> If you don't see the .bashrc file, it may be hidden. Check that your file explorer is set to show hidden files. Alternately, you can edit this .bashrc file inside your WSL using a shell text editor such as nano or gedit or vim. [Choose wisely](https://en.wikipedia.org/wiki/Editor_war).
+> If you don't see the .bashrc file, it may be hidden. Check that your file explorer is set to show hidden files. Alternately, you can edit this .bashrc file inside your WSL using a shell text editor such as nano or [emacs or vim](https://en.wikipedia.org/wiki/Editor_war). I recommend nano.
 
 Close and reopen your WSL terminal. If this worked you should be prompted for your admin password. 
 
