@@ -25,7 +25,7 @@ workon batch_fslstats_env
 git pull
 ```
 
-## 1. Create list of .nii files
+## 1. Create a list of .nii files
 First you need to put together a list of your .nii files. Save this list as a single-column .csv file where the first row says "input_file" and each subsequent row contains the full file path to a .nii file. Each .nii file will have its average value calculated.
 
 > [!IMPORTANT]
@@ -51,7 +51,7 @@ When it is done you will have a .csv file in the same directory as the input .cs
 The following section lists some issues that I have come across that may be causing problems. WIP.
 
 - If you are working on a WSL but the .nii files to process are on your Windows machine, ensure that you mount the correct drives to the WSL so that you can access your files. A good check for this is to use the `ls` command to print contents of directories
-- The default shell file for MacOS recently changed from `bash` to `zsh`. If you previously installed FSL and/or virtualenvwrapper on an older macOS that ran bash but then updated to a newer MacOS that uses `zsh`, you need to migrate the shell configuration lines from your .`bashrc` file to your `zshrc` file. [This page from FSL](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/install/configuration) provides more details on how to do this for FSL, but you can do the same thing for the virtualenvwrapper configuration commands as well
+- The default shell file for MacOS recently changed from `bash` to `zsh`. If you previously installed FSL and/or virtualenvwrapper on an older macOS that ran `bash` but then updated to a newer MacOS that uses `zsh`, you need to migrate the shell configuration lines from your .`bashrc` file to your `.zshrc` file. [This page from FSL](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/install/configuration) provides more details on how to do this for FSL, but you can do the same thing for the virtualenvwrapper configuration commands as well
 
 # Setup (Advanced Users)
 If you are an FSL user with git, python and FSL on your path and an established system for managing environments (such as conda), no special setup is needed: 
