@@ -8,7 +8,6 @@ These functions work very quickly and require minimal coding knowledge, but some
 > [!WARNING]
 > These scripts only work with 2D .nii files.
 
-# Instructions
 > [!IMPORTANT]
 > FSL only works in a linux/unix environment. If you have a PC then it will run inside a WSL. For the purposes of this readme, any mention of a "terminal window" or "command line" is referring to a unix or linux terminal and not a PC terminal. In other words if you are on a PC running WSL2 or Docker, open the linux terminal and run commmands there.
 
@@ -16,8 +15,7 @@ These functions work very quickly and require minimal coding knowledge, but some
 > [!NOTE]
 > This readme is written with the assumption you will be using virtualenvwrapper to manage your environments. If you are using a different way of managing your environments, disregard all `workon batch_fslstats_env` lines and instead just activate your environment and `cd` to repo dir.
 
-
-
+# Instructions
 If this is your first time working with the scripts, first run through the setup instructions [here](https://github.com/mcclaskey/batch_fslstats/blob/iss3-update-documentation/README.md#setup). 
 If it's been a while since you set up the scripts and you have not made any alterations to the code, you can run the following lines in your terminal to update the code to the latest version:
 ```
@@ -26,10 +24,10 @@ git pull
 ```
 
 ## 1. Create a list of .nii files
-First you need to put together a list of your .nii files. Save this list as a single-column .csv file where the first row says "input_file" and each subsequent row contains the full file path to a .nii file. Each .nii file will have its average value calculated.
+Put together a list of your .nii files and save this list as a single-column .csv file where the first row says "input_file" and each subsequent row contains the full file path to a .nii file. Each .nii file will have its average value calculated.
 
 > [!IMPORTANT]
-> The first row of the .csv must say "input_file" and all subsequent rows must be strings indicating the full file path to each .nii file
+> The first row of the .csv must say "input_file"
 
 > [!Tip]
 > I usually create this .csv file in MATLAB with something like `T = struct2table(dir('wildcardsearchstring')))` where 'wildcardsearchstring' is a path that points to all my files. Then I edit the table in matlab's Variable Editor and save the result using `writetable(T,'datalist.csv')`. You can also do this in python or bash.
@@ -39,7 +37,7 @@ First you need to put together a list of your .nii files. Save this list as a si
 Open a terminal and run the following 2 lines:
 ```
 workon batch_fslstats_env
-python compile_fsl_data.py
+python3 compile_fsl_data.py
 ```
 
 A file selection dialogue box will now open. Select the .csv file you created in step 1 and press ok. Wait while the program runs.
@@ -152,15 +150,8 @@ Otherwise, go to the FSL installation page (currently [here](https://fsl.fmrib.o
 Python often comes natively on new machines but you may need to download it. To check if it's installed, run the following command in the terminal:
 
 ```
-python --version
-```
-
-If that doesn’t work, your computer may not have the python alias and you may need to use `python3` instead of `python` going forward:
-
-```
 python3 --version
 ```
-
 
 If nothing is found, download the latest stable python release from the main python downloads page [here](https://www.python.org/downloads/) and try again. 
 
@@ -177,12 +168,6 @@ If nothing comes up then you need to install git. See the top of [this page](htt
 ### 5. Install virtualenvwrapper python package for path management if necessary
 
 These steps are also found in [the install page for virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html). Open a new terminal window and type:
-```
-pip install virtualenvwrapper
-```
-
-If that doesn’t work, your computer may not have the pip alias and you may need to use `pip3` instead of `pip` going forward:
-
 ```
 pip3 install virtualenvwrapper
 ```
