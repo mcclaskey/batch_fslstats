@@ -162,6 +162,13 @@ These steps are also found in [the install page for virtualenvwrapper](https://v
 ```
 pip install virtualenvwrapper
 ```
+
+If that doesn’t work, your computer may not have the pip alias and you may need to use `pip3` instead of `pip` going forward:
+
+```
+pip3 install virtualenvwrapper
+```
+
 Next, print the path to the `virtualenvwrapper.sh` file by typing:
 ```
 which virtualenvwrapper.sh
