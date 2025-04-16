@@ -216,7 +216,7 @@ _CMcC’s notes for the lab:_
 Open a terminal and change directories to where you will store the repo (or use `mkdir` to create a new folder). In this example I am using `~/repos/`. 
 Once you are in the folder where the repo will be stored, clone the repo with this command:
 ```
-git clone git@github.com:mcclaskey/batch_fslstats.git
+git clone https://github.com/mcclaskey/batch_fslstats.git
 ```
 This has created a folder called `/batch_fslstats/` inside the current folder. 
 
