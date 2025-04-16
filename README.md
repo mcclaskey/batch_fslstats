@@ -175,20 +175,20 @@ which virtualenvwrapper.sh
 ```
 The location to the shell file will print into the terminal window. Make a note of it because you will need it for the next step.
 
-Next you need to modify the `.bashrc` file to do 3 things: 
+Next you need to modify the shell configuration file to do 3 things: 
 1. define where to store the virtual environments
 2. define the default project location, and
 3. run the `virtualenvwrapper.sh` file.
 
-Detailed instructions for this step are currently explained [on this page](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file) but I will list the minimum necessary steps here. You will now need to open your `.bashrc` file in a text editor. 
+Your shell configuration file is either `.bashrc` if on linux or `.zshrc` if on a newer mac. Detailed instructions for this step are currently explained [on this page](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file) but I will list the minimum necessary steps here. You will now need to open your `.bashrc` file in a text editor. 
 
-If you are on a WSL you can open the file in your Windows File Explorer. The official address of your wsl is likely `\\wsl.localhost\`, but you may also be able to navigate there using a link in the sidebar.
+If you are on a WSL, open your `.bashrc` file in your Windows File Explorer. This file is located in the home directory of your WSL's username. The official address of your wsl is likely `\\wsl.localhost\`, thus your `.bashrc` file is likely  `\\wsl.localhost\Ubuntu\home\USERNAME\.bashrc`. You may also be able to navigate there using a link in the sidebar.
 
 Otherwise, open it directly in Linux by typing this in the command line if you use a bash shell (which is the default for WSL):
 ```
 sudo nano ~/.bashrc
 ```
-or, for `.zshrc` if you use a zsh shell instead of bash:
+or, for `.zshrc` if you use a zsh shell (which is the default for new Macs):
 ```
 sudo nano ~/.zshrc
 ```
