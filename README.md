@@ -180,7 +180,7 @@ Next you need to modify the shell configuration file to do 3 things:
 2. define the default project location, and
 3. run the `virtualenvwrapper.sh` file.
 
-Your shell configuration file is either `.bashrc` if on linux or `.zshrc` if on a newer mac. Detailed instructions for this step are currently explained [on this page](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file) but I will list the minimum necessary steps here. You will now need to open your `.bashrc` file in a text editor. 
+Your shell configuration file is either `.bashrc` if on linux or `.zshrc` if on a newer mac and these are located in your home `~/` directory. Detailed instructions for this step are currently explained [on this page](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file) but I will list the minimum necessary steps here. You will now need to open your `.bashrc` file in a text editor. 
 
 If you are on a WSL, open your `.bashrc` file in your Windows File Explorer. This file is located in the home directory of your WSL's username. The official address of your wsl is likely `\\wsl.localhost\`, thus your `.bashrc` file is likely  `\\wsl.localhost\Ubuntu\home\USERNAME\.bashrc`. You may also be able to navigate there using a link in the sidebar.
 
