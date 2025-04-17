@@ -3,7 +3,10 @@ batch_fslstats is a small set of functions that use FSL and python version 3.11+
 
 Mean values are calculated using the FSL call `fslstats -M`. This means that the output values are the mean intensity value of the .nii file, excluding empty voxels. [Read more about FSL here](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/). 
 
+These scripts were originally designed for users who already have access to FSL. If you are on a PC and do not already have a WSL with FSL, the setup instructions walk you through all the steps to get FSL on a PC via WSL. However, it may be easier to calculate the mean values using a pure python approach via another set of scripts that I've put together [here](https://github.com/mcclaskey/batch_niistats). 
+
 These functions work very quickly and require minimal coding knowledge, but some limited familiarity with unix to do the initial setup. Setup can be time-consuming if you need to do the entire thing (FSL can take a long time to install), but once installed, the scripts can process ~200 .nii files in 90 seconds. Your mileage may vary depending on your machine's resources.
+
 
 > [!WARNING]
 > These scripts only work with 2D .nii files.
